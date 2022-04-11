@@ -15,15 +15,16 @@ xhr.addEventListener("readystatechange", function () {
         var issueId = json.data.results[0].issue_meta.catalog_id;
         var newUrl = SMART_LINK_PREFIX + issueId;
 
-        var div = document.createElement("div");
+        var span = document.createElement("span");
+        span.style="float:left; overflow: visible; top: 0px; text-indent: 20%;";
         var anchor = document.createElement("a");
         anchor.setAttribute("href", newUrl);
         anchor.innerText = "Open in app";
         anchor.style = "color:white";
-        div.appendChild(anchor);
+        span.appendChild(anchor);
 
         var header = document.body.querySelector("span.allPages");
-        header.after(div);
+        header.after(span);
     }
 });
 xhr.open("GET", dataUrl);

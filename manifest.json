@@ -1,0 +1,31 @@
+{
+    "manifest_version": 2,
+    "name": "Marvel-ous Links",
+    "version": "1.0.0",
+
+    "content_scripts": [
+        {
+            "matches": [
+                "*://cmro.travis-starnes.com/*"
+            ],
+            "js": [ 
+                "cmro.js"
+            ]
+        },
+        {
+            "matches": [
+                "*://read.marvel.com/*"
+            ],
+            "js": [ 
+                "read_marvel.js"
+            ]
+        }
+    ],
+
+    "permissions": [
+        "*://cmro.travis-starnes.com/*",
+        "webRequest",
+        "https://bifrost.marvel.com/*",
+        "webRequest"
+      ]
+}

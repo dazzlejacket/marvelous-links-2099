@@ -24,7 +24,6 @@
 
     "permissions": [
         "*://cmro.travis-starnes.com/*",
-        "webRequest",
         "https://bifrost.marvel.com/*",
         "webRequest"
       ]

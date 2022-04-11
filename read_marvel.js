@@ -14,7 +14,16 @@ xhr.addEventListener("readystatechange", function () {
         var json = JSON.parse(this.responseText);
         var issueId = json.data.results[0].issue_meta.catalog_id;
         var newUrl = SMART_LINK_PREFIX + issueId;
-        window.location.replace(newUrl);
+
+        var div = document.createElement("div");
+        var anchor = document.createElement("a");
+        anchor.setAttribute("href", newUrl);
+        anchor.innerText = "Open in app";
+        anchor.style = "color:white";
+        div.appendChild(anchor);
+
+        var header = document.body.querySelector("span.allPages");
+        header.after(div);
     }
 });
 xhr.open("GET", dataUrl);

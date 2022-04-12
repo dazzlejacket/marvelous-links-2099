@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Marvel-ous Links",
-    "version": "1.0.1",
+    "version": "1.0.2",
 
     "content_scripts": [
         {
@@ -24,7 +24,7 @@
 
     "permissions": [
         "*://cmro.travis-starnes.com/*",
-        "https://bifrost.marvel.com/*",
+        "https://share.marvel.com/*",
         "webRequest"
       ]
 }

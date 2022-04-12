@@ -1,6 +1,5 @@
 const BUTTON_PREFIX = "https://read.marvel.com";
-const BIFROST_PREFIX = "https://bifrost.marvel.com/v1/catalog/digital-comics/metadata/";
-const SMART_LINK_PREFIX = "https://marvel.smart.link/fiir7ec77?type=issue&drn=drn:src:marvel:unison::prod:38861ac6-40bd-49a0-8698-e92fddfb2b35&sourceId=";
+const SHARE_LINK_PREFIX = "https://share.marvel.com/sharing/legacy/"
 
 var button = getButtonElement();
 var digitalId = getDigitalId(button.href);
@@ -24,17 +23,14 @@ function getDigitalId(url) {
 }
 
 function updateButton(digitalId) {
-    var dataUrl = BIFROST_PREFIX + digitalId;
+    var newUrl = SHARE_LINK_PREFIX + digitalId;
 
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener("readystatechange", function () {
-        if(this.readyState === 4) {
-            var json = JSON.parse(this.responseText);
-            var issueId = json.data.results[0].issue_meta.catalog_id;
-            var newUrl = SMART_LINK_PREFIX + issueId;
-            button.setAttribute("href", newUrl);
-        }
-    });
-    xhr.open("GET", dataUrl);
-    xhr.send();
+    var iframe = document.createElement('iframe');
+    iframe.setAttribute("src", newUrl);
+    iframe.setAttribute("width", "160px");
+    iframe.setAttribute("height", "80px");
+    iframe.setAttribute("scrolling", "no");
+    iframe.setAttribute("frameBorder", "0");
+
+    button.replaceWith(iframe);
 }

@@ -1,15 +1,16 @@
 const BUTTON_PREFIX = "https://read.marvel.com";
 const SHARE_LINK_PREFIX = "https://share.marvel.com/sharing/legacy/"
+const DEEPLINK_PREFIX = "marvelunlimited://issue/"
 
-var button = getButtonElement();
-var digitalId = getDigitalId(button.href);
+const button = getButtonElement();
+const digitalId = getDigitalId(button.href);
 updateButton(digitalId);
 
 function getButtonElement() {
-    var links = document.body.querySelectorAll("a");
+    const links = document.body.querySelectorAll("a");
 
-    for (var i = 0; i < links.length; i++) {
-        var url = links[i].href;
+    for (let i = 0; i < links.length; i++) {
+        const url = links[i].href;
 
         if (url.startsWith(BUTTON_PREFIX)) {
             return links[i];
@@ -18,19 +19,19 @@ function getButtonElement() {
 }
 
 function getDigitalId(url) {
-    var digitalIdPos  = url.lastIndexOf("/");
+    const digitalIdPos  = url.lastIndexOf("/");
     return url.slice(digitalIdPos + 1, url.length);
 }
 
-function updateButton(digitalId) {
-    var newUrl = SHARE_LINK_PREFIX + digitalId;
+async function updateButton(digitalId) {
+    const response = await fetch(SHARE_LINK_PREFIX + digitalId);
+    const text = await response.text();
 
-    var iframe = document.createElement('iframe');
-    iframe.setAttribute("src", newUrl);
-    iframe.setAttribute("width", "160px");
-    iframe.setAttribute("height", "80px");
-    iframe.setAttribute("scrolling", "no");
-    iframe.setAttribute("frameBorder", "0");
+    const regex = /drn=(.*)&amp/gm
+    const match = regex.exec(text);
 
-    button.replaceWith(iframe);
+    const data = match[1];
+
+    const newUrl = DEEPLINK_PREFIX + data;
+    button.setAttribute("href", newUrl);
 }

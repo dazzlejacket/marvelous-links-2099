@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Marvel-ous Links",
-    "version": "1.0.2",
+    "version": "2.0.0",
 
     "content_scripts": [
         {
@@ -26,5 +26,5 @@
         "*://cmro.travis-starnes.com/*",
         "https://share.marvel.com/*",
         "webRequest"
-      ]
+    ]
 }

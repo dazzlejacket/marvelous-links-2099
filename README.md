@@ -1,3 +1,5 @@
+Aron's Marvel-ous Links but no longer limited to Firefox as it is a userscript now. Detects if your device is mobile or desktop based on user agent. 
+
 ## Install
 A. Use Greasemonkey, Violentmonkey, Tampermonkey, etc and visit this: https://greasyfork.org/en/scripts/496777-marvel-ous-links-2099
 
